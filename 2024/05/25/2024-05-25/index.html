@@ -16,21 +16,21 @@
   <meta name="author" content="小志">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="article">
-<meta property="og:title" content="20240525">
+    <meta name="description" content="约定flag  答案有一个固定格式的字符串组成poc  漏洞演示，一般不具有攻击性，可以直接进行漏洞利用，执行命令货读取文件exp  漏洞利用脚本、工具，具有攻击性，可以直接进行漏洞利用，执行命令或者读取文件脚本  利用漏洞需要执行的本地“程序”，方便漏洞利用代替重复的手工操作   漏洞的产生原因漏洞的产生原因，是由多方面造成，例如 ·  设计缺陷 ：例如某开发团队在设计在线商城的时候，没有考虑到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTFshow_第一天">
 <meta property="og:url" content="https://lzw2004.github.io/2024/05/25/2024-05-25/index.html">
 <meta property="og:site_name" content="爱学习的小志">
+<meta property="og:description" content="约定flag  答案有一个固定格式的字符串组成poc  漏洞演示，一般不具有攻击性，可以直接进行漏洞利用，执行命令货读取文件exp  漏洞利用脚本、工具，具有攻击性，可以直接进行漏洞利用，执行命令或者读取文件脚本  利用漏洞需要执行的本地“程序”，方便漏洞利用代替重复的手工操作   漏洞的产生原因漏洞的产生原因，是由多方面造成，例如 ·  设计缺陷 ：例如某开发团队在设计在线商城的时候，没有考虑到">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://lzw2004.github.io/2024/05/25/2024-05-25/123.png">
 <meta property="article:published_time" content="2024-05-25T05:33:30.000Z">
-<meta property="article:modified_time" content="2024-05-25T06:06:34.880Z">
+<meta property="article:modified_time" content="2024-05-25T06:17:14.577Z">
 <meta property="article:author" content="小志">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://lzw2004.github.io/2024/05/25/2024-05-25/123.png">
   
   
   
-  <title>20240525 - 爱学习的小志</title>
+  <title>CTFshow_第一天 - 爱学习的小志</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -225,7 +225,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="20240525"></span>
+            <span id="subtitle" data-typed-text="CTFshow_第一天"></span>
           
         </div>
 
@@ -253,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 字
+          484 字
         
       </span>
     
@@ -264,7 +264,7 @@
         
         
         
-          1 分钟
+          5 分钟
         
       </span>
     
@@ -309,12 +309,55 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">20240525</h1>
+            <h1 id="seo-header">CTFshow_第一天</h1>
             
             
               <div class="markdown-body">
                 
-                <img src="/2024/05/25/2024-05-25/123.png" srcset="/img/loading.gif" lazyload class="">
+                <h2 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h2><p><strong>flag</strong>  答案有一个固定格式的字符串组成<br><strong>poc</strong>  漏洞演示，一般不具有攻击性，可以直接进行漏洞利用，执行命令货读取文件<br><strong>exp</strong>  漏洞利用脚本、工具，具有攻击性，可以直接进行漏洞利用，执行命令或者读取文件<br><strong>脚本</strong>  利用漏洞需要执行的本地“程序”，方便漏洞利用代替重复的手工操作</p>
+<br>
+
+<h2 id="漏洞的产生原因"><a href="#漏洞的产生原因" class="headerlink" title="漏洞的产生原因"></a>漏洞的产生原因</h2><p>漏洞的产生原因，是由多方面造成，例如 ·</p>
+<ul>
+<li><p><strong>设计缺陷</strong> ：例如某开发团队在设计在线商城的时候，没有考虑到用户订单中商品购买数量为负数情况，造成用户订单 金额为负数，商户资金损失。 </p>
+</li>
+<li><p><strong>逻辑错误</strong>：例如密码找回时，没有验证用户名是否是他人用户名，造成找回了他人的密码 </p>
+</li>
+<li><p><strong>代码bug</strong>：由于对用户的输入没有进行过滤或者其他没有想到的情况，造成业务非正常执行。例如路由器中有个ping 命令来检测网络是否连通，但是对参数没有过滤，造成了既能执行ping命令，又执行了其他命令，服务器被攻陷 </p>
+</li>
+<li><p><strong>越权漏洞</strong>：本来没有权限进行的行为，被恶意绕过，可以进行。比如弱口令登录后台、xss获取管理员session、普通用 户修改管理员用户的密码、管理员把不应该放到公网上的数据放上去，被恶意攻击者发现并下载，也属于越权漏洞， 经典的例如<strong><a target="_blank" rel="noopener" href="http://www.zip/">www.zip</a></strong>源码泄露</p>
+</li>
+<li><p><strong>其他漏洞</strong>：不属于上面的类型的漏洞</p>
+</li>
+</ul>
+<br>
+
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><ul>
+<li><strong>失能</strong><ul>
+<li>服务宕机</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li><strong>读取</strong><ul>
+<li>读敏感文件</li>
+<li>读数据库信息</li>
+</ul>
+</li>
+<li><strong>写入</strong><ul>
+<li>数据篡改</li>
+<li>提权</li>
+<li>加密硬盘</li>
+</ul>
+</li>
+<li><strong>执行</strong><ul>
+<li>执行命令</li>
+<li>内网渗透</li>
+<li>反弹shell</li>
+</ul>
+</li>
+</ul>
+
                 
               </div>
             
@@ -331,7 +374,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>20240525</div>
+      <div>CTFshow_第一天</div>
       <div>https://lzw2004.github.io/2024/05/25/2024-05-25/</div>
     </div>
     <div class="license-meta">
