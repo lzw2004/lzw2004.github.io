@@ -4,13 +4,29 @@
   
   
   <entry>
-    <title>CTFshow_第一天</title>
+    <title>CTFshow_第一节</title>
     <link href="/2024/05/25/2024-05-25/"/>
     <url>/2024/05/25/2024-05-25/</url>
     
-    <content type="html"><![CDATA[<h2 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h2><p><strong>flag</strong>  答案有一个固定格式的字符串组成<br><strong>poc</strong>  漏洞演示，一般不具有攻击性，可以直接进行漏洞利用，执行命令货读取文件<br><strong>exp</strong>  漏洞利用脚本、工具，具有攻击性，可以直接进行漏洞利用，执行命令或者读取文件<br><strong>脚本</strong>  利用漏洞需要执行的本地“程序”，方便漏洞利用代替重复的手工操作</p><br><h2 id="漏洞的产生原因"><a href="#漏洞的产生原因" class="headerlink" title="漏洞的产生原因"></a>漏洞的产生原因</h2><p>漏洞的产生原因，是由多方面造成，例如 ·</p><ul><li><p><strong>设计缺陷</strong> ：例如某开发团队在设计在线商城的时候，没有考虑到用户订单中商品购买数量为负数情况，造成用户订单 金额为负数，商户资金损失。 </p></li><li><p><strong>逻辑错误</strong>：例如密码找回时，没有验证用户名是否是他人用户名，造成找回了他人的密码 </p></li><li><p><strong>代码bug</strong>：由于对用户的输入没有进行过滤或者其他没有想到的情况，造成业务非正常执行。例如路由器中有个ping 命令来检测网络是否连通，但是对参数没有过滤，造成了既能执行ping命令，又执行了其他命令，服务器被攻陷 </p></li><li><p><strong>越权漏洞</strong>：本来没有权限进行的行为，被恶意绕过，可以进行。比如弱口令登录后台、xss获取管理员session、普通用 户修改管理员用户的密码、管理员把不应该放到公网上的数据放上去，被恶意攻击者发现并下载，也属于越权漏洞， 经典的例如<strong><a href="http://www.zip/">www.zip</a></strong>源码泄露</p></li><li><p><strong>其他漏洞</strong>：不属于上面的类型的漏洞</p></li></ul><br><h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><ul><li><strong>失能</strong><ul><li>服务宕机</li></ul></li></ul><ul><li><strong>读取</strong><ul><li>读敏感文件</li><li>读数据库信息</li></ul></li><li><strong>写入</strong><ul><li>数据篡改</li><li>提权</li><li>加密硬盘</li></ul></li><li><strong>执行</strong><ul><li>执行命令</li><li>内网渗透</li><li>反弹shell</li></ul></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="约定"><a href="#约定" class="headerlink" title="约定"></a>约定</h2><ul><li><strong>flag</strong>  答案有一个固定格式的字符串组成</li><li><strong>poc</strong>  漏洞演示，一般不具有攻击性，可以直接进行漏洞利用，执行命令货读取文件</li><li><strong>exp</strong>  漏洞利用脚本、工具，具有攻击性，可以直接进行漏洞利用，执行命令或者读取文件</li><li><strong>脚本</strong>  利用漏洞需要执行的本地“程序”，方便漏洞利用代替重复的手工操作</li></ul><h2 id="一、什么是漏洞"><a href="#一、什么是漏洞" class="headerlink" title="一、什么是漏洞"></a>一、什么是漏洞</h2><p>无论是安全渗透，还是CTF，本质上都是对现在有信息资产的非预期使用，用户通过技术手段，访问或者修改到本不应该<br>访问到的数据，执行不应执行的代码。</p><br><h2 id="二、漏洞的产生原因"><a href="#二、漏洞的产生原因" class="headerlink" title="二、漏洞的产生原因"></a>二、漏洞的产生原因</h2><p>漏洞的产生原因，是由多方面造成，例如 ·</p><ul><li><p><strong>设计缺陷</strong> ：例如某开发团队在设计在线商城的时候，没有考虑到用户订单中商品购买数量为负数情况，造成用户订单 金额为负数，商户资金损失。 </p></li><li><p><strong>逻辑错误</strong>：例如密码找回时，没有验证用户名是否是他人用户名，造成找回了他人的密码 </p></li><li><p><strong>代码bug</strong>：由于对用户的输入没有进行过滤或者其他没有想到的情况，造成业务非正常执行。例如路由器中有个ping 命令来检测网络是否连通，但是对参数没有过滤，造成了既能执行ping命令，又执行了其他命令，服务器被攻陷 </p></li><li><p><strong>越权漏洞</strong>：本来没有权限进行的行为，被恶意绕过，可以进行。比如弱口令登录后台、xss获取管理员session、普通用 户修改管理员用户的密码、管理员把不应该放到公网上的数据放上去，被恶意攻击者发现并下载，也属于越权漏洞， 经典的例如<strong><a href="http://www.zip/">www.zip</a></strong>源码泄露</p></li><li><p><strong>其他漏洞</strong>：不属于上面的类型的漏洞</p></li></ul><br><h2 id="三、漏洞的利用方式"><a href="#三、漏洞的利用方式" class="headerlink" title="三、漏洞的利用方式"></a>三、漏洞的利用方式</h2><p> <strong>失能</strong><br>    - 服务宕机</p><ul><li><strong>读取</strong><ul><li>读敏感文件</li><li>读数据库信息</li></ul></li><li><strong>写入</strong><ul><li>数据篡改</li><li>提权</li><li>加密硬盘</li></ul></li><li><strong>执行</strong><ul><li>执行命令</li><li>内网渗透</li><li>反弹shell</li></ul></li></ul><p>漏洞利用时，一般分为四种方式，分别是</p><h3 id="失能"><a href="#失能" class="headerlink" title="失能"></a>失能</h3><p>低级危害的利用方式，损人不利己，仅仅是让对方资产暂时失去服务功能，一般不会有其他的损失。<br>更偏向对对方的名誉及形象进行破坏，技术上损失小，无形资产损失大。</p><h3 id="读取"><a href="#读取" class="headerlink" title="读取"></a>读取</h3><p>中级危害的利用方式，能够读取目标资产中的敏感数据，如数据库敏感信息，密码、不对外的文档文本等等</p><h3 id="写入"><a href="#写入" class="headerlink" title="写入"></a>写入</h3><p>高级危害的利用方式，不仅能够读取目标中的敏感数据，还可以通过写入数据来篡改目标数据、修改目标的对外页面例如当年著名的伊朗网军攻陷百度事件，百度首页内容惨遭篡改，舆论一片哗然。这种漏洞利用危害性、影响性巨大属于高危漏洞。</p><h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><p>最高级别危害的利用方式，可以在目标资产上执行任意命令，完全控制目标资产，控制内部其他资产，不仅对数据洗劫一空，甚至可以操作目标指令，造成巨大损失。例如震网木马，通过攻陷伊朗核浓缩主机，伪造核心数据，并向离心机下达超负荷运行参数，造成离心机彻底损坏，伊朗核设施被迫中断的严重事故。</p><br><h2 id="四、Web题目的做题思路"><a href="#四、Web题目的做题思路" class="headerlink" title="四、Web题目的做题思路"></a>四、Web题目的做题思路</h2><p>在ct夺旗赛中，目标就是读取敏感信息，也就是fag字符串，这个字符串可能会存在目标主机的某个文件中，也可能存在<br>数据库中，也可能存在于某些高权限、内网的其他位置。</p><h3 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h3><p>所以拿到题目后，第一件事情就是要判断，判断利用的漏洞方式为<em><strong>读取、写入、还是执行</strong></em>。<br>具体怎么判断，我们这里还没学，可以不追究细节，后面我们遇到每个web题目，都先进行这个判断，但是有些时候，并不能马上确定，我们就从低到高，依次挖掘，<br>即<em><strong>先找文件读取、再找文件写入、再找命令执行</strong></em>。<br>这一步先大概确定出最终要拿到的权限，确定渗透方向。</p><h3 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h3><p>判断漏洞大概的类型，或者题目大概的考点，比如，有登录逻辑，就尝试sql注入，有下载逻辑就尝试文件读取，给了源码就做代码审计等等。<br>这一步确定具体的利用思路，实现漏洞利用。</p><h3 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h3><p>寻找敏感数据，拿到 <strong>flag</strong></p>]]></content>
     
     
+    <categories>
+      
+      <category>CTFshow</category>
+      
+      <category>网络安全</category>
+      
+      <category>信息安全</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>CTFshow</tag>
+      
+    </tags>
     
   </entry>
   
