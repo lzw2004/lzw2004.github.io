@@ -16,16 +16,16 @@
   <meta name="author" content="小志">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、信息泄露类型文件泄露, 根据泄漏的信息敏感程度，在WEB漏洞中可以算是中危甚至高危的漏洞，本篇文章就来介绍下一些常见的泄漏，主要分为由版本管理软件导致的泄露，文件包含导致的泄露和配置错误导致的泄露。">
+    <meta name="description" content="一、信息泄露类型文件泄露, 根据泄漏的信息敏感程度，在WEB漏洞中可以算是中危甚至高危的漏洞，本篇文章就来介绍下一些常见的泄漏，主要分为由版本管理软件导致的泄露，文件包含导致的泄露和配置错误导致的泄露。     上面的只是前人总结出来的突破点，需要灵活运用，不能过于呆板，比如这个敏感文件泄露。访问http:&#x2F;&#x2F;xxx&#x2F;www.zip 404怎么办?404就是此路不通，需要重新找思路。我们的目的，不">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CTF_第二节-漏洞利用之信息泄露">
 <meta property="og:url" content="https://lzw2004.github.io/2024/05/25/2/index.html">
 <meta property="og:site_name" content="爱学习的小志">
-<meta property="og:description" content="一、信息泄露类型文件泄露, 根据泄漏的信息敏感程度，在WEB漏洞中可以算是中危甚至高危的漏洞，本篇文章就来介绍下一些常见的泄漏，主要分为由版本管理软件导致的泄露，文件包含导致的泄露和配置错误导致的泄露。">
+<meta property="og:description" content="一、信息泄露类型文件泄露, 根据泄漏的信息敏感程度，在WEB漏洞中可以算是中危甚至高危的漏洞，本篇文章就来介绍下一些常见的泄漏，主要分为由版本管理软件导致的泄露，文件包含导致的泄露和配置错误导致的泄露。     上面的只是前人总结出来的突破点，需要灵活运用，不能过于呆板，比如这个敏感文件泄露。访问http:&#x2F;&#x2F;xxx&#x2F;www.zip 404怎么办?404就是此路不通，需要重新找思路。我们的目的，不">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://lzw2004.github.io/2024/05/25/2/liucheng.png">
 <meta property="article:published_time" content="2024-05-25T09:05:35.000Z">
-<meta property="article:modified_time" content="2024-05-26T10:36:23.294Z">
+<meta property="article:modified_time" content="2024-05-26T12:05:56.859Z">
 <meta property="article:author" content="小志">
 <meta property="article:tag" content="课堂笔记">
 <meta property="article:tag" content="信息安全">
@@ -259,7 +259,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          91 字
+          1.2k 字
         
       </span>
     
@@ -270,7 +270,7 @@
         
         
         
-          1 分钟
+          10 分钟
         
       </span>
     
@@ -322,6 +322,38 @@
                 
                 <h2 id="一、信息泄露类型"><a href="#一、信息泄露类型" class="headerlink" title="一、信息泄露类型"></a>一、信息泄露类型</h2><p>文件泄露, 根据泄漏的信息敏感程度，在WEB漏洞中可以算是中危甚至高危的漏洞，本篇文章就来介绍下一些常见的泄漏，主要分为由版本管理软件导致的泄露，文件包含导致的泄露和配置错误导致的泄露。</p>
 <img src="/2024/05/25/2/liucheng.png" srcset="/img/loading.gif" lazyload class="">
+
+<br>
+
+<p>上面的只是前人总结出来的突破点，需要灵活运用，不能过于呆板，比如这个敏感文件泄露。访问<a target="_blank" rel="noopener" href="http://xxx/www.zip">http://xxx/www.zip</a> 404怎么办?404就是此路不通，需要重新找思路。<br>我们的目的，不是秀操作，而是真真实实拿到我们需要的敏感文件，至于从哪个方式、哪个路径拿到，其实不重要的，不管黑猫白猫抓住老鼠就是好猫。<br>上面的图，只是告诉大家有这些可能，但是不一定信息泄露就一定在上面的这几种情况之中。</p>
+<br>
+
+<h2 id="二、信息泄露漏洞利用"><a href="#二、信息泄露漏洞利用" class="headerlink" title="二、信息泄露漏洞利用"></a>二、信息泄露漏洞利用</h2><h3 id="1、http头信息泄露"><a href="#1、http头信息泄露" class="headerlink" title="1、http头信息泄露"></a>1、http头信息泄露</h3><p>这里我们需要区别下 <strong>&#x2F;admin&#x2F;</strong> 和 <strong>&#x2F;admin</strong> 的区别，虽然两者只相差一个斜杠，但是访问的是不同的文件 <strong>&#x2F;admin&#x2F; 表示访问的是admin目录，会默认访问目录里面的索引文件，比如index.html或者index.php表示访问admin文件，如果没有这个文件，就直接返回404，不会去寻找索引文件</strong><br>有些情况下加不加斜杠都能访问到 <strong>&#x2F;admin&#x2F;</strong> ，是因为配置文件里面进行了设置，这里我们后面会讲</p>
+<p>这里还要区别的是路由，目前网站主流都是基于路由的，比如<br>这里则表示访问的是 <strong>&#x2F;user路由，而不是访问user这个文件，需要根据server头来推断，比如php、asp、&#x2F;userjsp、aspx、html、shtml这些后缀，是基于文件的。<br>而那些看起来没有后缀，或者像&#x2F;user&#x2F;loginusername&#x3D;admin&amp;password&#x3D;123这种形式，则是基于路由的，这个需要多次判断。</strong></p>
+<ul>
+<li>200 表示正常</li>
+<li>301  302 表示跳转</li>
+<li>404 表示文件不存在</li>
+<li>500 表示服务器内部错误</li>
+<li>502 表示转发失败 error gatwary</li>
+</ul>
+<h3 id="2、报错信息泄露"><a href="#2、报错信息泄露" class="headerlink" title="2、报错信息泄露"></a>2、报错信息泄露</h3><h3 id="3、页面信息泄露"><a href="#3、页面信息泄露" class="headerlink" title="3、页面信息泄露"></a>3、页面信息泄露</h3><h3 id="4、robots-txt-文件泄露"><a href="#4、robots-txt-文件泄露" class="headerlink" title="4、robots.txt 文件泄露"></a>4、robots.txt 文件泄露</h3><p>robots.bxt又称为机器人协议、爬虫协议，主要面向互联网的爬虫，规定哪些内容可以收录哪些内容不能收录，属于防君子不防小人的东西，没有任何强制约束力。一般自诩为正规的搜索引擎爬虫，都会遵守协议，但仍有某些引擎直接无视。</p>
+<h3 id="5、-git文件泄露"><a href="#5、-git文件泄露" class="headerlink" title="5、.git文件泄露"></a>5、.git文件泄露</h3><p>什么是 <strong>.git</strong> 文件泄露<br><strong>.git</strong> 是一个版本控制系统</p>
+<p><strong>问题的所在</strong></p>
+<pre><code class="hljs">这里的问题就是，多个开发不能并行开发，只能串联开发。也就是开发者张三如果功能没有开发完毕，并提交到服务器之前，开发者李四是没有办法下载最终版本的文件到自己机器上再进一步增加功能的。造成的结果，就是堵塞和低效。
+
+堵塞就是只要有1个人的功能没做完，后面的所有功能都必须暂停，不能开发。低效就是代码不能同时开始，只能一个功能一个功能开发，如果有3个开发人员，那么总会有2个人没事干，在摸鱼，老板白白浪费工资，所以老板很生气。如果项目增大到需要20个开发人员，则会经常有19个开发人员在摸鱼相当于4核CPU轮流处理事务，那么没有轮到的CPU，就资源浪费了。老板更希望是4核CPU同时工作，而不是轮流工作。
+
+本来这样也挺好的，1个人的活，有3个人干，但是好景不长，有老板发现了这个问题，并开发了一个软件，专门解决这个问题，这个软件就是版本控制系统。
+</code></pre>
+<p>于是，利用工具应运而生，专门解析提交记录，来获取提交的文件内容。<a target="_blank" rel="noopener" href="https://github.com/lijiejie/GitHack">https://github.com/lijiejie/GitHack</a></p>
+<p><strong>GitHack</strong> 是一个.git泄露利用脚本，通过泄露的,git文件夹下的文件，重建还原工程源代码。</p>
+<p>渗透测试人员、攻击者，可以进一步审计代码，挖掘:文件上传，SQL注射等web安全洞。</p>
+<p>利用工具的原理</p>
+<ul>
+<li>解析 <strong>.git&#x2F;index</strong> 文件，找到工程中所有的:(文件名，文件sha1) 去 <strong>.git&#x2F;objects&#x2F;</strong> 文件夹下下载对应的文件<br>zlib解压文件，按原始的目录结构写入源代码</li>
+</ul>
+
                 
               </div>
             
