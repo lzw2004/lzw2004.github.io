@@ -24,7 +24,7 @@
 <meta property="og:description" content="约定 flag  答案有一个固定格式的字符串组成 poc  漏洞演示，一般不具有攻击性，可以直接进行漏洞利用，执行命令货读取文件 exp  漏洞利用脚本、工具，具有攻击性，可以直接进行漏洞利用，执行命令或者读取文件 脚本  利用漏洞需要执行的本地“程序”，方便漏洞利用代替重复的手工操作  一、什么是漏洞无论是安全渗透，还是CTF，本质上都是对现在有信息资产的非预期使用，用户通过技术手段，访问或者修">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-25T05:33:30.000Z">
-<meta property="article:modified_time" content="2024-05-26T10:36:31.105Z">
+<meta property="article:modified_time" content="2024-05-27T07:45:41.982Z">
 <meta property="article:author" content="小志">
 <meta property="article:tag" content="课堂笔记">
 <meta property="article:tag" content="信息安全">
@@ -268,7 +268,7 @@
         
         
         
-          11 分钟
+          10 分钟
         
       </span>
     
@@ -373,7 +373,8 @@
 <br>
 
 <h2 id="四、Web题目的做题思路"><a href="#四、Web题目的做题思路" class="headerlink" title="四、Web题目的做题思路"></a>四、Web题目的做题思路</h2><p>在ct夺旗赛中，目标就是读取敏感信息，也就是fag字符串，这个字符串可能会存在目标主机的某个文件中，也可能存在<br>数据库中，也可能存在于某些高权限、内网的其他位置。</p>
-<h3 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h3><p>所以拿到题目后，第一件事情就是要判断，判断利用的漏洞方式为<em><strong>读取、写入、还是执行</strong></em>。<br>具体怎么判断，我们这里还没学，可以不追究细节，后面我们遇到每个web题目，都先进行这个判断，但是有些时候，并不能马上确定，我们就从低到高，依次挖掘，<br>即<em><strong>先找文件读取、再找文件写入、再找命令执行</strong></em>。<br>这一步先大概确定出最终要拿到的权限，确定渗透方向。</p>
+<h3 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h3><p>所以拿到题目后，第一件事情就是要判断，判断利用的漏洞方式为<em><strong>读取、写入、还是执行</strong></em>。</p>
+<p>具体怎么判断，并不能马上确定，我们就从低到高，依次挖掘，<br>即<em><strong>先找文件读取、再找文件写入、再找命令执行</strong></em>。<br>这一步先大概确定出最终要拿到的权限，确定渗透方向。</p>
 <h3 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h3><p>判断漏洞大概的类型，或者题目大概的考点，比如，有登录逻辑，就尝试sql注入，有下载逻辑就尝试文件读取，给了源码就做代码审计等等。<br>这一步确定具体的利用思路，实现漏洞利用。</p>
 <h3 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h3><p>寻找敏感数据，拿到 <strong>flag</strong></p>
 
@@ -446,7 +447,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2024年5月26日</div>
+          <div>2024年5月27日</div>
         </div>
       
       
