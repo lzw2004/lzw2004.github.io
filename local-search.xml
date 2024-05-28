@@ -4,6 +4,37 @@
   
   
   <entry>
+    <title>CTF_</title>
+    <link href="/2024/05/28/4/"/>
+    <url>/2024/05/28/4/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一、PHP的基础概念"><a href="#一、PHP的基础概念" class="headerlink" title="一、PHP的基础概念"></a>一、PHP的基础概念</h1><p>PHP是一&#x3D;一种脚本语言，和我们的Python类似，不过他是仅运行在服务器上的，通过 <strong>URL</strong> 访问后来解释执行。</p><p>我们执行Python脚本的时候，是使用 <strong>python githack.py</strong> 这种形式。</p><p>而我们需要执行PHP的时候，是直接访问 <a href="http://www.xxx.com/index.php">http://www.xxx.com/index.php</a><br>访问后，服务器上会解释执行 index.php 这个文件，然后执行的结果返回给我们的浏览器</p><p>PHP由于简单易学、部署简单、快速开发、多平台兼容的特性，很快就脱颖而出，成为众多 小众网站的首选语言，因为PHP够小、够简单、，甚至单人就可以开发出一套完整的网站系统，不像Java那样笨重。<br>适合中小型企业网站的开发。</p><p>总结：PHP是网站的一种脚本语言，文件名是 .php ,是用来写网站的，适合中小型网站的开发。</p><h1 id="二、PHP环境的安装"><a href="#二、PHP环境的安装" class="headerlink" title="二、PHP环境的安装"></a>二、PHP环境的安装</h1><h2 id="php运行环境"><a href="#php运行环境" class="headerlink" title="php运行环境"></a>php运行环境</h2><p>所谓的 php 运行环境，其实就是和我们 Python 的环境一样，不过我们这里选择一个集成的运行环境</p><p>下载完，打开之后，是这样的</p><img src="/2024/05/28/4/1.png" class=""><p>在 <strong>“网站”</strong> 里边可以设置网站根目录</p><img src="/2024/05/28/4/2.png" class=""><p>到这php运行环境就搭建完成了</p><h2 id="php开发环境"><a href="#php开发环境" class="headerlink" title="php开发环境"></a>php开发环境</h2><p>这里推荐 <strong>VSCode</strong> 因为简单易用，功能强大，插件市场好</p><img src="/2024/05/28/4/3.png" class=""><p>还有一个可以用 <strong>PhpStorm</strong> 但是吧，<strong>收费</strong></p><img src="/2024/05/28/4/4.png" class=""><p>这个就是自行选择</p><h1 id="PHP的基础语法"><a href="#PHP的基础语法" class="headerlink" title="PHP的基础语法"></a>PHP的基础语法</h1><h2 id="GET"><a href="#GET" class="headerlink" title="$_GET"></a>$_GET</h2><p>在 url 后边直接加入参数比如 ?a&#x3D;b 这就是 get 型数据提交，那么在 php 代码中，是如何接收这个参数和值的呢？</p><p>新建一个 php 文件 写入如下代码：</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-variable">$b</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;a&quot;</span>];<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$b</span>;<br><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure><p>浏览器运行后会发现</p><img src="/2024/05/28/4/5.png" class=""><p>我们进行了传参 a&#x3D;asd<br>返回的结果就是我们刚刚传递的参数</p><p>换一个思想，试一下上传系统命令呢？<br>那我们就要知道PHP里边能执行系统命令的函数，这里使用 <strong>system()</strong><br>修改代码为</p><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><br><span class="hljs-variable">$b</span> = <span class="hljs-variable">$_GET</span>[<span class="hljs-string">&quot;a&quot;</span>];<br><span class="hljs-variable">$c</span> = <span class="hljs-title function_ invoke__">system</span>(<span class="hljs-variable">$b</span>);<br><span class="hljs-keyword">echo</span> <span class="hljs-variable">$c</span>;<br><br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure><p>继续传参，这里修改值为 <strong>“systeminfo”</strong>（查看系统信息）<br>因为我的php环境是在Windows做的，所有命令就是windows的Dos命令</p><img src="/2024/05/28/4/6.png" class=""><p>这里乱码的原因是因为编码问题</p><h2 id="POST"><a href="#POST" class="headerlink" title="$_POST"></a>$_POST</h2><p>跟 <strong>$_GET</strong> 相类似，但是区别在于， <strong>$_GET</strong> 传参是直接在URL里边明文传参，但是 <strong>$_POST</strong> 传参的时候在 URL 里边是看不见明文的<br>在 URL 里直接传参也是不可以的<br>但是我们利用 Buro抓包- -&gt; 重发 来修改参数<br>从而获取敏感信息</p><pre><code class="hljs">（以上为个人理解）</code></pre><p><a href="https://php.github.net.cn/download-docs.php">php手册</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>课堂笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>课堂笔记</tag>
+      
+      <tag>信息安全</tag>
+      
+      <tag>网络安全</tag>
+      
+      <tag>CTF</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>CTF_第三节-Burp suite</title>
     <link href="/2024/05/27/3/"/>
     <url>/2024/05/27/3/</url>
@@ -130,7 +161,7 @@
     <link href="/2024/05/24/hello-world/"/>
     <url>/2024/05/24/hello-world/</url>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><p><img src="/123.png" alt="图片引用方法二"></p>]]></content>
+    <content type="html"><![CDATA[<p>欢迎来到 <a href="https://hexo.io/">Hexo</a>! 这是您的第一个帖子。更多信息请查看<a href="https://hexo.io/docs/">文档</a>。如果您在使用 Hexo 时遇到任何问题，可以在<a href="https://hexo.io/docs/troubleshooting.html">故障排除</a>中找到答案，也可以在 <a href="https://github.com/hexojs/hexo/issues">GitHub</a> 上询问我。</p><h2 id="快速启动"><a href="#快速启动" class="headerlink" title="快速启动"></a>快速启动</h2><h3 id="创建新职位"><a href="#创建新职位" class="headerlink" title="创建新职位"></a>创建新职位</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>更多信息: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="运行服务器"><a href="#运行服务器" class="headerlink" title="运行服务器"></a>运行服务器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>更多信息: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="生成静态文件"><a href="#生成静态文件" class="headerlink" title="生成静态文件"></a>生成静态文件</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>更多信息: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="部署到远程站点"><a href="#部署到远程站点" class="headerlink" title="部署到远程站点"></a>部署到远程站点</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>更多信息: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
     
     
     
