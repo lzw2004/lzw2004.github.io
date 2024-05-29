@@ -39,7 +39,7 @@
     <link href="/2024/05/28/5/"/>
     <url>/2024/05/28/5/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<h1 id="一、什么是命令执行"><a href="#一、什么是命令执行" class="headerlink" title="一、什么是命令执行"></a>一、什么是命令执行</h1><p>上一章，已经知道了一个危险函数 <strong>system</strong> 现在我们来深入掌握一下 <strong>CTF</strong> 中的命令执行。<br>在 <strong>CTF</strong> 中，命令执行一般是指目标服务器上的命令执行，也就是远程命令执行。</p><p>英文缩写为 <strong>RCE</strong> ，可以理解为</p><ul><li><strong>Remote Command Exec</strong></li><li><strong>Remote Cond Exec</strong></li></ul><p>这里有两种情况可以是Command执行，比如利用 <strong>systeminfo</strong> 命令查看系统信息，这里的 <strong>systeminfo</strong> 就是系统的Command，也就是code，代表的是直接执行我们传入的代码。</p><br><h1 id="二、PHP中的Command-Exec函数"><a href="#二、PHP中的Command-Exec函数" class="headerlink" title="二、PHP中的Command Exec函数"></a>二、PHP中的Command Exec函数</h1><p>在PHP中，官方有下面6种函数可以执行系统命令</p><ul><li>system</li><li>passthru</li><li>exec</li><li>shell_exec</li><li>popen</li><li>pcntl_exec</li><li>执行运算符  <strong>`</strong>（反引号）  就是  <strong>shell_exec</strong> 的简写</li></ul><p>这些函数的共同特点技师可以执行系统命令，只是返回值、参数个数、参数位置不同而已。<br>这里所说的系统命令，和php所在的服务器的操作系统密切相关。<br>在 <strong>windows</strong> 服务器上，我们可以执行windows系统命令或者程序名称，例如calc、bat、vab等等。<br>在 <strong>Linux&#x2F;Unix</strong>服务器上，我们可以执行Linux系统命令，例如cat、cp、nc等等。</p>]]></content>
     
     
     <categories>
